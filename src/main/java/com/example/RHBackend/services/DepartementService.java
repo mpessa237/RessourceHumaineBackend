@@ -33,19 +33,6 @@ public class DepartementService {
         return toResponse(departementRepo.save(dept));
     }
 
-    private DepartementResponse toResponse(Departement departement) {
-        int effectif = (departement.getEmployes() != null)
-                ? departement.getEmployes().size() : 0;
-
-        DepartementResponse departementResponse = new DepartementResponse();
-        departementResponse.setDepartementId(departement.getDepartementId());
-        departementResponse.setNom(departement.getNom());
-        departementResponse.setDescription(departement.getDescription());
-        departementResponse.setNombreEmployes(effectif);
-        departementResponse.setCreatedAt(departement.getCreatedAt());
-
-        return departementResponse;
-    }
 
     public List<DepartementResponse> litserTous() {
         return departementRepo.findAll()
@@ -92,6 +79,20 @@ public class DepartementService {
                             + " employe(s) y sont rattaches.");
         }
         departementRepo.delete(dept);
+    }
+
+    private DepartementResponse toResponse(Departement departement) {
+        int effectif = (departement.getEmployes() != null)
+                ? departement.getEmployes().size() : 0;
+
+        DepartementResponse departementResponse = new DepartementResponse();
+        departementResponse.setDepartementId(departement.getDepartementId());
+        departementResponse.setNom(departement.getNom());
+        departementResponse.setDescription(departement.getDescription());
+        departementResponse.setNombreEmployes(effectif);
+        departementResponse.setCreatedAt(departement.getCreatedAt());
+
+        return departementResponse;
     }
 
 }

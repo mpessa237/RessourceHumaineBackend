@@ -87,16 +87,17 @@ public class EmployeService {
         employeRepo.save(employe);
 
         // 6. TODO: envoyer les credentials par email
-        return toResponse(employe);
+        return toResponse(employe,motDePasse);
     }
 
-    private EmployeResponse toResponse(Employe employe) {
+    private EmployeResponse toResponse(Employe employe,String motDePasse) {
 
         EmployeResponse employeResponse = new EmployeResponse();
         employeResponse.setEmployeId(String.valueOf(employe.getEmployeId()));
         employeResponse.setMatricule(employe.getMatricule());
         employeResponse.setNom(employe.getNom());
         employeResponse.setPrenom(employe.getPrenom());
+        employeResponse.setMotDePasseInitial(motDePasse);
         employeResponse.setEmail(employe.getEmail());
         employeResponse.setTelephone(employe.getTelephone());
         employeResponse.setDateEmbauche(String.valueOf(employe.getDateEmbauche()));
@@ -129,7 +130,7 @@ public class EmployeService {
     public List<EmployeResponse> listerAll() {
         return employeRepo.findAll()
                 .stream()
-                .map(this::toResponse)
+                .map(employe -> toResponse(employe,null))
                 .collect(Collectors.toList());
     }
 
@@ -137,7 +138,7 @@ public class EmployeService {
         Employe employe = employeRepo.findById(employeId)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Employe introuvable : " + employeId));
-        return toResponse(employe);
+        return toResponse(employe,null);
     }
 
     // ■■ RECHERCHER ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -149,7 +150,7 @@ public class EmployeService {
         return employeRepo
                 .searchByNomOrPrenomOrMatricule(query)
                 .stream()
-                .map(this::toResponse)
+                .map(employe -> toResponse(employe,null))
                 .collect(Collectors.toList());
     }
 
@@ -163,7 +164,7 @@ public class EmployeService {
         // Desactiver aussi le compte User si INACTIF
         boolean actif = nouveauStatut == StatutEmploye.ACTIF;
         employe.getUser().setEnabled(actif);
-        return toResponse(employeRepo.save(employe));
+        return toResponse(employeRepo.save(employe),null);
     }
 
     @Transactional
@@ -197,7 +198,7 @@ public class EmployeService {
             employe.setPoste(poste);
         }
         employe.getUser().setUsername(employeRequest.getEmail());
-        return toResponse(employeRepo.save(employe));
+        return toResponse(employeRepo.save(employe),null);
 
     }
 }

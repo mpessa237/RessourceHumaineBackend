@@ -67,6 +67,9 @@ public class Employe {
     @OneToMany(mappedBy = "employe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Conge> conges;
 
+    @OneToMany(mappedBy = "employe",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<SoldeConge> soldeConges;
+
     @OneToMany(mappedBy = "employe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Presence> presences;
 

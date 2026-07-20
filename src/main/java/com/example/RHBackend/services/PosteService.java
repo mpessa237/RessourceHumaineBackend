@@ -33,21 +33,6 @@ public class PosteService {
         return toResponse(posteRepo.save(poste));
     }
 
-    private PosteResponse toResponse(Poste poste) {
-
-        int effectif = (poste.getEmployes() != null)
-                ? poste.getEmployes().size() : 0;
-        PosteResponse posteResponse = new PosteResponse();
-        posteResponse.setPosteId(poste.getPosteId());
-        posteResponse.setIntitule(poste.getIntitule());
-        posteResponse.setNiveauRequis(poste.getNiveauRequis());
-        posteResponse.setDescription(poste.getDescription());
-        posteResponse.setNombreEmployes(effectif);
-        posteResponse.setCreatedAt(poste.getCreatedAt());
-
-        return posteResponse;
-    }
-
 
     public List<PosteResponse> listerTous() {
         return posteRepo.findAll()
@@ -91,5 +76,20 @@ public class PosteService {
                             + " employe(s) occupent ce poste.");
         }
         posteRepo.delete(poste);
+    }
+
+    private PosteResponse toResponse(Poste poste) {
+
+        int effectif = (poste.getEmployes() != null)
+                ? poste.getEmployes().size() : 0;
+        PosteResponse posteResponse = new PosteResponse();
+        posteResponse.setPosteId(poste.getPosteId());
+        posteResponse.setIntitule(poste.getIntitule());
+        posteResponse.setNiveauRequis(poste.getNiveauRequis());
+        posteResponse.setDescription(poste.getDescription());
+        posteResponse.setNombreEmployes(effectif);
+        posteResponse.setCreatedAt(poste.getCreatedAt());
+
+        return posteResponse;
     }
 }

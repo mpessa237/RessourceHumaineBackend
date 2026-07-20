@@ -1,31 +1,28 @@
 package com.example.RHBackend.dtos;
 
-import com.example.RHBackend.enums.StatutConge;
-import com.example.RHBackend.enums.TypeConge;
+import com.example.RHBackend.enums.TypeContrat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CongeResponse {
-    private Long congeId;
+public class ContratResponse {
+
+    private Long contratId;
     private String employeNom;
     private String employePrenom;
     private String employeMatricule;
-    private TypeConge typeConge;
+    private TypeContrat typeContrat;
     private LocalDate dateDebut;
     private LocalDate dateFin;
-    private long nombreJours;
-    private String motif;
-    private StatutConge statutConge ;
-    private String commentaireRh;
-    private String validateurUsername;
-    private LocalDateTime dateDecision;
+    private BigDecimal salaire;
+    private String observations;
+    private Boolean estActif;
     private LocalDateTime createdAt;
-
 }

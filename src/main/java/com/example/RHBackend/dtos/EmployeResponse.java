@@ -23,4 +23,6 @@ public class EmployeResponse {
     private String posteIntitule;
     private Long userId;
     private LocalDateTime createdAt;
+
+    private String motDePasseInitial;
 }
