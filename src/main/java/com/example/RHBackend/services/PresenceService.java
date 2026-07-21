@@ -73,9 +73,7 @@ public class PresenceService {
                 .collect(Collectors.toList());
     }
 
-    // ── VOIR PAR EMPLOYE ─────────────────────────────────────
     public List<PresenceResponse> voirParEmploye(Long employeId) {
-        // Vérifier que l'employé existe
         employeRepo.findById(employeId)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Employé introuvable : " + employeId));

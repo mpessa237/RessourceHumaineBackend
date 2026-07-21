@@ -7,7 +7,6 @@ import com.example.RHBackend.models.User;
 import com.example.RHBackend.repository.UserRepo;
 import com.example.RHBackend.security.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final UserRepo userRepo;
 
-    public @Nullable AuthResponse authenticate(LoginRequest loginRequest) {
+    public AuthResponse authenticate(LoginRequest loginRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),

@@ -6,7 +6,6 @@ import com.example.RHBackend.models.Poste;
 import com.example.RHBackend.repository.PosteRepo;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
